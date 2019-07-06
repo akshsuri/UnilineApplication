@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BOOKING">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="object_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="capacity_provider_id" Type="Int32" />
+    <Property Name="date_from" Type="DateTime" Precision="3" />
+    <Property Name="date_to" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CAPACITY_PROVIDER" Relationship="Self.FK_cpid" FromRole="BOOKING" ToRole="CAPACITY_PROVIDER" />
+  </EntityType>
+  <EntityType Name="CAPACITY_PROVIDER">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contract_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BOOKINGs" Relationship="Self.FK_cpid" FromRole="CAPACITY_PROVIDER" ToRole="BOOKING" />
+  </EntityType>
+  <Association Name="FK_cpid">
+    <End Role="CAPACITY_PROVIDER" Type="Self.CAPACITY_PROVIDER" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAPACITY_PROVIDER">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="capacity_provider_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApplicationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BOOKINGs" EntityType="Self.BOOKING" />
+    <EntitySet Name="CAPACITY_PROVIDER" EntityType="Self.CAPACITY_PROVIDER" />
+    <AssociationSet Name="FK_cpid" Association="Self.FK_cpid">
+      <End Role="CAPACITY_PROVIDER" EntitySet="CAPACITY_PROVIDER" />
+      <End Role="BOOKING" EntitySet="BOOKINGs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

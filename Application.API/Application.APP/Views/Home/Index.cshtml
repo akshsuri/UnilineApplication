@@ -1,0 +1,45 @@
+﻿@{
+    //ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body data-ng-app="myApp" data-ng-controller="myControl">
+
+    <div class="container-fluid">
+        <div>
+            <h1>Bookings</h1>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Date From</th>
+                            <th>Date To</th>
+                            <th>Is Active</th>
+                            <th>Amount</th>
+                            <th>Currency</th>
+                            <th>Comment</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in bookinglist">
+                            <td>{{data.id}}</td>
+                            <td>{{data.object_name}}</td>
+                            <td>{{data.date_from}}</td>
+                            <td>{{data.date_to}}</td>
+                            <td>{{data.is_active}}</td>
+                            <td>{{data.amount}}</td>
+                            <td>{{data.currency}}</td>
+                            <td>{{data.comment}}</td>
+                            <td><input type="button" class="btn-primary" value="Delete" ng-click="deleteObject(data.id)" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="button" class="btn-primary" value="Serialize Object" ng-click="SerializeObject()"/>
+            </div>
+        </div>
+    </div>
+
+</body>

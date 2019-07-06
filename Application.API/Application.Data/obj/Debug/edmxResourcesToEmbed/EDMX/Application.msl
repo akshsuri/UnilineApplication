@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ApplicationModelStoreContainer" CdmEntityContainer="ApplicationEntities">
+    <EntitySetMapping Name="BOOKINGs">
+      <EntityTypeMapping TypeName="ApplicationModel.BOOKING">
+        <MappingFragment StoreEntitySet="BOOKING">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="object_name" ColumnName="object_name" />
+          <ScalarProperty Name="capacity_provider_id" ColumnName="capacity_provider_id" />
+          <ScalarProperty Name="date_from" ColumnName="date_from" />
+          <ScalarProperty Name="date_to" ColumnName="date_to" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CAPACITY_PROVIDER">
+      <EntityTypeMapping TypeName="ApplicationModel.CAPACITY_PROVIDER">
+        <MappingFragment StoreEntitySet="CAPACITY_PROVIDER">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
